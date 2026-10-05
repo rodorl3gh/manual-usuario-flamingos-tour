@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manual de Usuario — Flamingos Tour</title>
+<meta name="description" content="Manual de usuario del sitio web y sistema de administración de Flamingos Tour.">
+<style>
+:root{
+  --brand:#ED8300;
+  --brand-dark:#B86400;
+  --brand-light:#FFF3E4;
+  --gold:#E8AC02;
+  --ink:#0B0F13;
+  --white:#ffffff;
+  --gray-50:#f9fafb;
+  --gray-100:#f3f4f6;
+  --gray-200:#e5e7eb;
+  --gray-300:#d1d5db;
+  --gray-500:#6b7280;
+  --gray-700:#374151;
+  --gray-900:#111827;
+  --accent:#10B981;
+  --info:#3b82f6;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:hidden;max-width:100%}
+img,video{max-width:100%;height:auto}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:var(--gray-700);background:var(--gray-50);line-height:1.7;font-size:15px;-webkit-font-smoothing:antialiased}
+
+/* PORTADA */
+.cover{background:linear-gradient(140deg,#0B0F13 0%,#151a20 45%,#3a2500 100%);min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:3rem 1.5rem;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-40%;right:-15%;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(237,131,0,.28) 0%,transparent 68%)}
+.cover::after{content:'';position:absolute;bottom:-35%;left:-15%;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(232,172,2,.18) 0%,transparent 70%)}
+.cover-content{position:relative;z-index:1;max-width:720px;width:100%}
+.cover-logo{width:150px;height:150px;margin:0 auto 1.75rem;background:#fff;border-radius:28px;padding:14px;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.cover-logo img{width:100%;height:100%;object-fit:contain}
+.cover h1{font-size:clamp(2rem,7vw,3rem);font-weight:800;color:#fff;margin-bottom:.35rem;letter-spacing:-.02em}
+.cover h2{font-size:clamp(1.05rem,3.5vw,1.35rem);font-weight:500;color:var(--gold);margin-bottom:1.25rem}
+.cover-line{width:90px;height:4px;background:var(--brand);border-radius:2px;margin:0 auto 1.75rem}
+.cover .subtitle{font-size:1rem;color:#c7cdd4;margin:0 auto 2.75rem;max-width:520px}
+.cover-info{display:flex;gap:1rem 2rem;justify-content:center;flex-wrap:wrap;color:#9aa4af;font-size:.85rem}
+.cover-info span{display:flex;align-items:center;gap:.45rem}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--brand)}
+
+.page{max-width:960px;margin:0 auto;padding:2rem 1.25rem}
+
+/* TOC */
+.toc{background:var(--white);border-radius:16px;padding:2rem;box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid var(--gray-200);margin-bottom:2.5rem}
+.toc h2{font-size:1.4rem;font-weight:700;color:var(--gray-900);margin-bottom:1.25rem;display:flex;align-items:center;gap:.6rem}
+.toc-part{font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brand);margin:1.25rem 0 .5rem}
+.toc-part:first-of-type{margin-top:0}
+.toc ol{padding-left:1.4rem}
+.toc li{margin-bottom:.4rem;font-size:.95rem;color:var(--gray-700)}
+.toc li a{color:var(--gray-900);text-decoration:none;font-weight:500}
+.toc li a:hover{color:var(--brand)}
+
+/* SECCIONES */
+.section{background:var(--white);border-radius:16px;padding:2.5rem;box-shadow:0 1px 3px rgba(0,0,0,.06);border:1px solid var(--gray-200);margin-bottom:1.75rem}
+.section-number{display:inline-block;min-width:42px;height:42px;padding:0 .5rem;border-radius:11px;background:var(--brand);color:#fff;text-align:center;line-height:42px;font-weight:800;font-size:1.05rem;margin-bottom:1rem}
+.section h2{font-size:1.45rem;font-weight:700;color:var(--gray-900);margin-bottom:.6rem;letter-spacing:-.01em}
+.section h3{font-size:1.02rem;font-weight:700;color:var(--gray-900);margin:1.6rem 0 .6rem}
+.section p{color:var(--gray-500);margin-bottom:.9rem;font-size:.95rem}
+.section ul,.section ol{padding-left:1.4rem;margin-bottom:1rem;color:var(--gray-500);font-size:.95rem}
+.section li{margin-bottom:.35rem}
+.lead{font-size:1rem;color:var(--gray-700)}
+.section strong{color:var(--gray-900)}
+
+.tip{background:var(--brand-light);border-left:4px solid var(--brand);border-radius:0 8px 8px 0;padding:1rem 1.25rem;margin:1.1rem 0;font-size:.9rem;color:var(--brand-dark)}
+.tip strong{color:var(--brand-dark)}
+
+.steps{counter-reset:step;margin:1rem 0 1.2rem}
+.step{counter-increment:step;display:flex;gap:1rem;align-items:flex-start;margin-bottom:1rem}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--brand);color:#fff;text-align:center;line-height:32px;font-weight:700;font-size:.85rem;flex-shrink:0}
+.step-content{flex:1;min-width:0}
+.step-content strong{color:var(--gray-900);display:block;margin-bottom:.1rem}
+.step-content span{color:var(--gray-500);font-size:.9rem}
+
+figure{margin:1.25rem 0 0}
+.section img,.screen{width:100%;border-radius:12px;border:1px solid var(--gray-200);box-shadow:0 6px 20px rgba(0,0,0,.09);display:block}
+.img-caption{text-align:center;font-size:.8rem;color:var(--gray-500);margin-top:.55rem;font-style:italic}
+
+.btn{border:1px solid var(--gray-200);border-radius:6px;padding:.2rem .6rem;font-size:.8rem;font-weight:600;background:var(--gray-50);color:var(--gray-700);white-space:nowrap}
+.btn-brand{background:var(--brand);color:#fff;border-color:var(--brand)}
+.btn-gold{background:#fdf3d3;color:#8a6a00;border-color:#f3e2a8}
+.btn-green{background:#ecfdf5;color:#059669;border-color:#a7f3d0}
+.btn-red{background:#fef2f2;color:#dc2626;border-color:#fecaca}
+
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:.9rem;margin:1rem 0}
+.card{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:12px;padding:1.1rem}
+.card strong{display:block;color:var(--gray-900);font-size:.92rem;margin-bottom:.2rem}
+.card span{font-size:.85rem;color:var(--gray-500)}
+
+.note{background:var(--gray-100);border-radius:12px;padding:1rem 1.25rem;font-size:.88rem;color:var(--gray-500);margin:1rem 0}
+kbd{background:var(--ink);color:#fff;border-radius:5px;padding:.1rem .45rem;font-size:.78rem;font-family:inherit;font-weight:600}
+
+.footer-card{background:linear-gradient(135deg,#0B0F13,#2a1c00);border-radius:16px;padding:2.5rem;text-align:center;color:#fff;margin-bottom:2rem;border:none}
+.footer-card .flogo{width:70px;height:70px;margin:0 auto 1rem;background:#fff;border-radius:16px;padding:8px}
+.footer-card .flogo img{width:100%;height:100%;object-fit:contain}
+.footer-card p{color:#c7cdd4;font-size:.9rem;margin-bottom:.35rem}
+.footer-card .ag{color:var(--gold);font-size:.8rem;font-weight:600;letter-spacing:.03em}
+
+@media(max-width:768px){
+  .section{padding:1.5rem}
+  .toc{padding:1.5rem}
+  .cover-info{flex-direction:column;gap:.5rem}
+}
+@media print{
+  body{background:#fff}
+  .cover{min-height:auto;padding:4rem 2rem;page-break-after:always}
+  .section,.toc{box-shadow:none;border:1px solid #e5e7eb;page-break-inside:avoid}
+  .page{max-width:100%;padding:1rem}
+  .tip,.card,figure{page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ PORTADA ============ -->
+<div class="cover">
+  <div class="cover-content">
+    <div class="cover-logo"><img src="img/logo.png" alt="Flamingos Tour"></div>
+    <h1>Flamingos Tour</h1>
+    <h2>Manual de Usuario</h2>
+    <div class="cover-line"></div>
+    <p class="subtitle">Guía completa para administrar tu agencia de viajes y transporte turístico: tu sitio web, el cotizador, los apartados y tu panel de control.</p>
+    <div class="cover-info">
+      <span><span class="dot"></span> Celaya, Guanajuato</span>
+      <span><span class="dot"></span> Panel de administración</span>
+      <span><span class="dot"></span> 2026</span>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- ============ BIENVENIDA ============ -->
+  <div class="section">
+    <h2>¡Bienvenido a tu sistema!</h2>
+    <p class="lead">Este manual te acompaña paso a paso para que aproveches al máximo <strong>Flamingos Tour</strong>: la página web donde tus clientes cotizan y apartan, y el panel privado donde tú controlas todo tu negocio.</p>
+    <p><strong>No necesitas conocimientos técnicos.</strong> Cada tarea está explicada con pasos numerados y capturas de pantalla reales del sistema.</p>
+    <div class="tip"><strong>Acceso rápido:</strong> Tu sitio está disponible en internet las 24 horas. Tú solo necesitas tu usuario y contraseña para entrar al panel de administración desde cualquier computadora o celular.</div>
+    <div class="grid2">
+      <div class="card"><strong>Sitio web público</strong><span>Lo que ven tus clientes: unidades, viajes, destinos y el cotizador.</span></div>
+      <div class="card"><strong>Panel de administración</strong><span>Tu centro de control: prospectos, apartados, unidades, viajes y pagos.</span></div>
+    </div>
+  </div>
+
+  <!-- ============ ÍNDICE ============ -->
+  <div class="toc">
+    <h2>Índice</h2>
+    <p class="toc-part">Parte 1 · Tu sitio web (lo que ve el cliente)</p>
+    <ol>
+      <li><a href="#s1">La página de inicio</a></li>
+      <li><a href="#s2">El cotizador de viajes</a></li>
+      <li><a href="#s3">El apartado con anticipo</a></li>
+    </ol>
+    <p class="toc-part">Parte 2 · Panel de administración</p>
+    <ol start="4">
+      <li><a href="#s4">Cómo entrar al panel</a></li>
+      <li><a href="#s5">Panel principal (Dashboard)</a></li>
+      <li><a href="#s6">Prospectos (clientes interesados)</a></li>
+      <li><a href="#s7">Apartados y verificación de pagos</a></li>
+      <li><a href="#s8">Unidades (tus vehículos)</a></li>
+      <li><a href="#s9">Viajes y charters</a></li>
+      <li><a href="#s10">Datos de transferencia</a></li>
+      <li><a href="#s11">Cobros en línea con Mercado Pago</a></li>
+    </ol>
+    <p class="toc-part">Parte 3 · Herramientas y configuración</p>
+    <ol start="12">
+      <li><a href="#s12">Formulario de levantamiento de información</a></li>
+      <li><a href="#s13">Propuesta y datos del cotizador</a></li>
+      <li><a href="#s14">Consejos y preguntas frecuentes</a></li>
+    </ol>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- PARTE 1 -->
+  <!-- ============================================================= -->
+
+  <!-- 1 HOME -->
+  <div class="section" id="s1">
+    <div class="section-number">1</div>
+    <h2>La página de inicio</h2>
+    <p>Es la primera impresión que se lleva tu cliente. Aquí presentas tus unidades, tus próximos viajes, tus destinos y la confianza que da tu agencia, con un botón siempre presente para cotizar.</p>
+
+    <figure>
+      <img src="img/01-home-portada.png" alt="Portada de Flamingos Tour">
+      <p class="img-caption">Portada de bienvenida: el mensaje principal, el botón «Cotiza tu viaje» y los puntos que generan confianza.</p>
+    </figure>
+
+    <h3>Secciones que forman tu página</h3>
+    <ul>
+      <li><strong>Portada principal:</strong> el lema «Vive la aventura. Nosotros te llevamos.» con los botones <span class="btn btn-brand">Cotiza tu viaje</span> y <span class="btn">Ver unidades</span>.</li>
+      <li><strong>Nuestras unidades:</strong> tus vehículos con fotos, capacidad y equipamiento.</li>
+      <li><strong>Próximos viajes:</strong> los charters o viajes programados con precio por lugar.</li>
+      <li><strong>Reserva tu lugar:</strong> formulario rápido para apartar un charter.</li>
+      <li><strong>Sobre nosotros, garantías, extras, destinos y testimonios:</strong> refuerzan la confianza del cliente.</li>
+    </ul>
+
+    <figure>
+      <img src="img/02-home-unidades.png" alt="Sección de unidades">
+      <p class="img-caption">Sección «Nuestras unidades». Cada tarjeta muestra la capacidad, el equipamiento y un botón para ver detalles y cotizar.</p>
+    </figure>
+
+    <figure>
+      <img src="img/03-home-viajes.png" alt="Sección de próximos viajes">
+      <p class="img-caption">Sección «Próximos viajes»: los charters programados. Si aún no hay ninguno, se muestra un aviso de «Próximamente».</p>
+    </figure>
+
+    <figure>
+      <img src="img/04-home-reserva.png" alt="Sección reserva tu lugar">
+      <p class="img-caption">Formulario «Reserva tu lugar»: el cliente elige el viaje, la fecha y cuántos lugares necesita; se guarda y pasa al cotizador.</p>
+    </figure>
+
+    <figure>
+      <img src="img/05-home-destinos.png" alt="Sección de destinos populares">
+      <p class="img-caption">Sección «Destinos y rutas populares» con tiempos y distancias aproximadas desde tu base en Celaya.</p>
+    </figure>
+
+    <div class="tip"><strong>Consejo:</strong> todo lo que aparece en esta página (unidades, viajes y textos) se administra desde tu panel. Si actualizas una unidad o un viaje, la página se actualiza sola.</div>
+  </div>
+
+  <!-- 2 COTIZADOR -->
+  <div class="section" id="s2">
+    <div class="section-number">2</div>
+    <h2>El cotizador de viajes</h2>
+    <p>Es tu mejor vendedor. El cliente elige su ruta, fechas y número de pasajeros, y el sistema le muestra el precio en segundos, sin esperar a que alguien conteste WhatsApp.</p>
+
+    <figure>
+      <img src="img/06-cotizador.png" alt="Cotizador de viajes">
+      <p class="img-caption">El cotizador guía al cliente por pasos y calcula el precio automáticamente según la unidad y la ruta.</p>
+    </figure>
+
+    <h3>Los pasos que sigue tu cliente</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Ruta</strong><span>Elige el lugar de salida y el destino (o escribe «otro» para cotización manual).</span></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Fechas</strong><span>Indica la fecha de salida y el regreso.</span></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Pasajeros</strong><span>El sistema recomienda la unidad ideal (Sprinter hasta 20 o Camión Volvo hasta 30).</span></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Contacto</strong><span>Deja su nombre, teléfono y correo.</span></div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Resumen</strong><span>Ve el desglose del precio y puede <span class="btn btn-brand">Apartar mi viaje</span> o pedir informacion por WhatsApp.</span></div></div>
+    </div>
+
+    <div class="tip"><strong>Importante:</strong> cada persona que cotiza queda registrada automáticamente como <strong>prospecto</strong> en tu panel. Así nunca pierdes un cliente interesado.</div>
+  </div>
+
+  <!-- 3 APARTADO -->
+  <div class="section" id="s3">
+    <div class="section-number">3</div>
+    <h2>El apartado con anticipo</h2>
+    <p>Cuando el cliente decide reservar, pasa a esta pantalla para apartar su viaje pagando solo un porcentaje del total. Tú eliges los datos bancarios desde el panel.</p>
+
+    <figure>
+      <img src="img/08-apartado.png" alt="Pantalla de apartado">
+      <p class="img-caption">Pantalla de apartado: el cliente ve el resumen, elige cuánto quiere apartar (20%, 50%, 75%, 100% o un porcentaje propio) y su método de pago.</p>
+    </figure>
+
+    <h3>Formas de apartar</h3>
+    <ul>
+      <li><strong>Transferencia:</strong> el cliente ve tus datos bancarios y sube una captura de su comprobante.</li>
+      <li><strong>Mercado Pago:</strong> paga con tarjeta en la pasarela segura y el apartado se genera al confirmar.</li>
+    </ul>
+    <p>Al terminar, el cliente recibe un <strong>folio</strong> y tú ves el apartado en tu panel para verificarlo y confirmarlo.</p>
+    <div class="tip"><strong>Anticipo mínimo:</strong> el sistema pide como mínimo el 20% del total. Tú defines ese porcentaje en <a href="#s13">los datos del cotizador</a>.</div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- PARTE 2 -->
+  <!-- ============================================================= -->
+
+  <!-- 4 LOGIN -->
+  <div class="section" id="s4">
+    <div class="section-number">4</div>
+    <h2>Cómo entrar al panel</h2>
+    <p>El panel de administración es privado. Solo tú (y quien tú autorices) pueden entrar con usuario y contraseña.</p>
+
+    <figure>
+      <img src="img/10-admin-login.png" alt="Pantalla de inicio de sesión">
+      <p class="img-caption">Pantalla de acceso al panel: escribe tu usuario y contraseña y confirma con el botón naranja.</p>
+    </figure>
+
+    <h3>Para iniciar sesión</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Abre la dirección del panel</strong><span>En tu navegador entra a la dirección de tu sistema y agrega <kbd>/admin</kbd> al final.</span></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Escribe tu usuario</strong><span>Tu nombre de acceso de administrador.</span></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Escribe tu contraseña</strong><span>Por seguridad aparece como puntos.</span></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Presiona «Ingresar»</strong><span>Entrarás directo a tu panel principal.</span></div></div>
+    </div>
+
+    <div class="tip"><strong>Seguridad:</strong> no compartas tu contraseña. Si necesitas cambiarla, solicítalo a tu proveedor (GLA) para actualizarla de forma segura.</div>
+    <p>Para salir, usa el botón <span class="btn btn-red">Cerrar sesión</span> que está al final del menú lateral, especialmente si entras desde una computadora compartida.</p>
+  </div>
+
+  <!-- 5 DASHBOARD -->
+  <div class="section" id="s5">
+    <div class="section-number">5</div>
+    <h2>Panel principal (Dashboard)</h2>
+    <p>Es lo primero que ves al entrar. Te da un vistazo rápido de cómo va tu negocio: cuántos clientes han pedido información y cuántos ya reservaron.</p>
+
+    <figure>
+      <img src="img/11-admin-dashboard.png" alt="Panel principal">
+      <p class="img-caption">Panel principal con los indicadores clave y la lista de los prospectos más recientes.</p>
+    </figure>
+
+    <h3>Qué te muestra</h3>
+    <div class="grid2">
+      <div class="card"><strong>Total prospectos</strong><span>Todas las personas que han cotizado por tu sitio.</span></div>
+      <div class="card"><strong>Nuevos</strong><span>Contactos recién llegados que aún no atiendes.</span></div>
+      <div class="card"><strong>Reservados</strong><span>Clientes que ya apartaron o reservaron.</span></div>
+      <div class="card"><strong>No cerrados</strong><span>Cotizaciones que no llegaron a reserva.</span></div>
+    </div>
+    <p>También verás tu <strong>tasa de conversión</strong> (qué porcentaje de interesados terminan reservando) y el acceso directo <span class="btn btn-brand">Ver todos</span> hacia la sección de prospectos.</p>
+    <div class="tip"><strong>Menú lateral:</strong> desde aquí vas a Prospectos, Apartados, Unidades, Viajes, Datos de transferencia y Mercado Pago. El botón <span class="btn btn-brand">Abrir página web</span> abre tu sitio público en otra pestaña.</div>
+  </div>
+
+  <!-- 6 PROSPECTOS -->
+  <div class="section" id="s6">
+    <div class="section-number">6</div>
+    <h2>Prospectos (clientes interesados)</h2>
+    <p>Aquí vive tu base de clientes potenciales. Cada persona que usa el cotizador se registra automáticamente con su ruta, fechas, pasajeros y datos de contacto.</p>
+
+    <figure>
+      <img src="img/12-admin-prospectos.png" alt="Sección de prospectos">
+      <p class="img-caption">Lista de prospectos con buscador, filtro por estado y botón para exportar todo a Excel/CSV.</p>
+    </figure>
+
+    <h3>Qué puedes hacer</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Buscar</strong><span>Escribe un nombre, teléfono, origen o destino para encontrar a alguien al instante.</span></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Filtrar por estado</strong><span>Muestra solo los nuevos, contactados, cotizando, reservados, con pago de anticipo o no cerrados.</span></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Abrir el detalle</strong><span>Haz clic en una persona para ver todos sus datos y cambiar su estado de seguimiento.</span></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Anotar seguimiento</strong><span>Escribe notas (por ejemplo «volver a llamar el viernes») y presiona <span class="btn btn-brand">Guardar notas</span>.</span></div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Exportar</strong><span>El botón <span class="btn">Exportar CSV</span> descarga toda la lista para abrirla en Excel.</span></div></div>
+    </div>
+
+    <div class="tip"><strong>Consejo de ventas:</strong> revisa los prospectos «Nuevos» cada día y cámbialos a «Contactado» cuando ya los hayas atendido. Así sabrás con claridad a quién le falta seguimiento.</div>
+  </div>
+
+  <!-- 7 APARTADOS -->
+  <div class="section" id="s7">
+    <div class="section-number">7</div>
+    <h2>Apartados y verificación de pagos</h2>
+    <p>Cuando un cliente aparta su viaje (por transferencia o con Mercado Pago), aparece aquí. Esta es la sección donde confirmas o rechazas los anticipos.</p>
+
+    <figure>
+      <img src="img/13-admin-apartados.png" alt="Sección de apartados">
+      <p class="img-caption">Tabla de apartados con folio, cliente, destino, unidad, monto, método de pago, estado y acciones.</p>
+    </figure>
+
+    <h3>Como confirmar un apartado por transferencia</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Busca el apartado</strong><span>Los pagos por transferencia llegan con estado «Pendiente de verificación».</span></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Revisa el comprobante</strong><span>Haz clic en el enlace «comprobante» para ver la captura que subió el cliente.</span></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Confirma o rechaza</strong><span>Usa el botón verde <span class="btn btn-green">✓</span> para confirmar o el rojo <span class="btn btn-red">✕</span> para rechazar.</span></div></div>
+    </div>
+    <div class="tip"><strong>El botón <span class="btn">Actualizar</span></strong> vuelve a cargar la lista para ver los apartados más recientes o confirmar pagos hechos con Mercado Pago.</div>
+  </div>
+
+  <!-- 8 UNIDADES -->
+  <div class="section" id="s8">
+    <div class="section-number">8</div>
+    <h2>Unidades (tus vehículos)</h2>
+    <p>Administra tu flota. Lo que agregues aquí aparece en la página web (sección «Nuestras unidades») y alimenta al cotizador para calcular precios.</p>
+
+    <figure>
+      <img src="img/14-admin-unidades.png" alt="Sección de unidades">
+      <p class="img-caption">Listado de unidades. Cada una tiene su capacidad, fotos, equipamiento y la opción de activarla o desactivarla.</p>
+    </figure>
+
+    <h3>Para agregar o editar una unidad</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Presiona «Nueva unidad»</strong><span>Se abre una ventana con el formulario.</span></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Llena los datos</strong><span>Nombre, capacidad de pasajeros, descripción, recargo por temporada y equipamiento.</span></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Sube fotos</strong><span>Agrega las imágenes del vehículo y marca una como principal.</span></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Guarda</strong><span>La unidad queda lista para mostrarse en la web.</span></div></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card"><strong>Activar / desactivar</strong><span>Una unidad desactivada no aparece en la web ni en el cotizador, pero no se borra.</span></div>
+      <div class="card"><strong>Orden</strong><span>Define cuál aparece primero en la página.</span></div>
+      <div class="card"><strong>Eliminar</strong><span>Con confirmación previa; úsalo solo si ya no ofrecerás ese vehículo.</span></div>
+    </div>
+    <div class="tip"><strong>Consejo:</strong> mantén las fotos y la descripción actualizadas. Una unidad bien presentada convierte más.</div>
+  </div>
+
+  <!-- 9 VIAJES -->
+  <div class="section" id="s9">
+    <div class="section-number">9</div>
+    <h2>Viajes y charters</h2>
+    <p>Aquí publicas los viajes en grupo con fecha fija (los «charters»): excursiones, parques temáticos, peregrinaciones, etc. Son un producto aparte de la renta de la unidad completa.</p>
+
+    <figure>
+      <img src="img/15-admin-viajes.png" alt="Sección de viajes">
+      <p class="img-caption">Listado de viajes programados con destino, fechas, ciudades de salida y precio por lugar.</p>
+    </figure>
+
+    <h3>Para publicar un viaje</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Presiona «Nuevo viaje»</strong><span>Se abre el formulario del charter.</span></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Completa los datos</strong><span>Nombre, destino, descripción, fechas disponibles, ciudades de salida y precio por lugar.</span></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Guarda</strong><span>El viaje aparece en «Próximos viajes» de tu página web.</span></div></div>
+    </div>
+    <div class="tip"><strong>Reserva automática:</strong> con el viaje publicado, tus clientes pueden reservar su lugar directo desde la página. Cada reserva cae como prospecto o apartado según el tipo de viaje.</div>
+  </div>
+
+  <!-- 10 PAGOS -->
+  <div class="section" id="s10">
+    <div class="section-number">10</div>
+    <h2>Datos de transferencia</h2>
+    <p>Configura los datos bancarios que verá el cliente cuando elija pagar por transferencia. Es importante tenerlos correctos para que los anticipos lleguen bien.</p>
+
+    <figure>
+      <img src="img/16-admin-pagos.png" alt="Configuración de datos de transferencia">
+      <p class="img-caption">Formulario donde registras titular, banco, CLABE, cuenta e instrucciones para el pago por transferencia.</p>
+    </figure>
+
+    <h3>Qué llenar</h3>
+    <ul>
+      <li><strong>Titular:</strong> nombre del dueño de la cuenta.</li>
+      <li><strong>Banco:</strong> institución bancaria.</li>
+      <li><strong>CLABE:</strong> los 18 dígitos de tu cuenta.</li>
+      <li><strong>Número de cuenta / tarjeta:</strong> dato de apoyo para el cliente.</li>
+      <li><strong>Instrucciones:</strong> mensaje opcional (por ejemplo, «envía tu comprobante por WhatsApp»).</li>
+      <li><strong>Mostrar transferencia:</strong> casilla para activar o desactivar esta forma de pago.</li>
+    </ul>
+    <p>Al terminar, presiona <span class="btn btn-brand">Guardar</span>; verás la confirmación «Datos guardados correctamente».</p>
+    <div class="tip"><strong>Recomendación:</strong> revisa que la CLABE esté escrita sin errores. Un dígito mal significa que el pago no llega.</div>
+  </div>
+
+  <!-- 11 MERCADO PAGO -->
+  <div class="section" id="s11">
+    <div class="section-number">11</div>
+    <h2>Cobros en línea con Mercado Pago</h2>
+    <p>Con Mercado Pago tus clientes pueden pagar el anticipo con tarjeta de crédito o débito, sin que tú tengas que compartir datos bancarios. El dinero cae directo en tu cuenta.</p>
+
+    <figure>
+      <img src="img/17-admin-mercadopago.png" alt="Panel de Mercado Pago">
+      <p class="img-caption">Panel de Mercado Pago: muestra si tu cuenta está vinculada y permite conectarla o desvincularla.</p>
+    </figure>
+
+    <h3>Conectar tu cuenta</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Presiona «Conectar con Mercado Pago»</strong><span>Te llevará a la página segura de Mercado Pago.</span></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Inicia sesión y autoriza</strong><span>Ingresa con tu cuenta de Mercado Pago y acepta la vinculación.</span></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Listo</strong><span>Verás «Cuenta conectada». El token se renueva solo.</span></div></div>
+    </div>
+    <div class="grid2">
+      <div class="card"><strong>Vinculada</strong><span>Muestra tu identificador y la fecha de renovación del acceso.</span></div>
+      <div class="card"><strong>Sin vincular</strong><span>Ofrece el botón para conectar tu cuenta cuando tú quieras.</span></div>
+      <div class="card"><strong>Desvincular</strong><span>Corta la conexión si cambias de cuenta o lo necesitas.</span></div>
+    </div>
+    <div class="tip"><strong>Buenas noticias:</strong> los cobros entran directo a tu cuenta de Mercado Pago. El sistema solo facilita el pago; no retiene tu dinero.</div>
+  </div>
+
+  <!-- ============================================================= -->
+  <!-- PARTE 3 -->
+  <!-- ============================================================= -->
+
+  <!-- 12 LEVANTAMIENTO -->
+  <div class="section" id="s12">
+    <div class="section-number">12</div>
+    <h2>Formulario de levantamiento de información</h2>
+    <p>Es un formulario interno (protegido con usuario y contraseña) para recopilar toda la información de tu negocio: identidad, flota, precios, destinos, formas de pago y más. Sirve para dejar el sistema configurado a tu medida.</p>
+
+    <figure>
+      <img src="img/09-levantamiento-login.png" alt="Acceso al formulario de levantamiento">
+      <p class="img-caption">Acceso al formulario de levantamiento. Se entra con el usuario y contraseña que te proporcione tu proveedor.</p>
+    </figure>
+
+    <h3>Qué información recopila</h3>
+    <ul>
+      <li>Identidad y confianza: nombre comercial, historia, garantías, redes sociales y horarios.</li>
+      <li>Flota de unidades y sus precios.</li>
+      <li>Reglas de cotización: anticipo, precios por día o kilómetro, temporadas.</li>
+      <li>Destinos y rutas frecuentes.</li>
+      <li>Proceso de cierre de ventas y formas de pago.</li>
+    </ul>
+    <div class="tip"><strong>Nota:</strong> tus respuestas se guardan solas mientras escribes. Puedes llenarlo poco a poco, sin miedo a perder lo avanzado.</div>
+  </div>
+
+  <!-- 13 PROPUESTA -->
+  <div class="section" id="s13">
+    <div class="section-number">13</div>
+    <h2>Propuesta y datos del cotizador</h2>
+    <p>Esta sección explica, en una página clara, cómo funciona el cotizador automático y qué datos hacen falta para activarlo por completo. Además incluye el formulario para capturar los precios y reglas del tarifario.</p>
+
+    <figure>
+      <img src="img/07-propuesta.png" alt="Página de propuesta del cotizador">
+      <p class="img-caption">Página de propuesta: explica el valor del cotizador automático y los datos que faltan por definir.</p>
+    </figure>
+
+    <h3>Datos que alimentan el cotizador</h3>
+    <div class="grid2">
+      <div class="card"><strong>Precios por unidad</strong><span>Tarifas por día, kilómetro y hora extra.</span></div>
+      <div class="card"><strong>Rutas y destinos</strong><span>Precios por ruta desde tus lugares de salida.</span></div>
+      <div class="card"><strong>Temporadas</strong><span>Ajustes de precio en fechas de alta demanda.</span></div>
+      <div class="card"><strong>Pagos y anticipo</strong><span>Porcentaje de anticipo, CLABE y activación de Mercado Pago.</span></div>
+    </div>
+    <p>Con estos datos cargados, el cotizador calcula precios precisos de forma automática y tus clientes pueden reservar sin esperar respuesta.</p>
+  </div>
+
+  <!-- 14 CONSEJOS -->
+  <div class="section" id="s14">
+    <div class="section-number">14</div>
+    <h2>Consejos y preguntas frecuentes</h2>
+
+    <h3>Rutina recomendada</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Revisa el Dashboard cada mañana</strong><span>Mira cuántos prospectos nuevos entraron.</span></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Da seguimiento en Prospectos</strong><span>Contacta a los nuevos y actualiza su estado.</span></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Verifica los apartados</strong><span>Confirma los comprobantes de transferencia el mismo día.</span></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Publica tus próximos viajes</strong><span>Mantén la sección de Viajes siempre con opciones nuevas.</span></div></div>
+    </div>
+
+    <h3>Preguntas frecuentes</h3>
+    <div class="grid2">
+      <div class="card"><strong>¿Puedo entrar desde el celular?</strong><span>Sí. Todo el sistema funciona en celular, tablet y computadora.</span></div>
+      <div class="card"><strong>¿Pierdo información si cierro sesión?</strong><span>No. Todo se guarda en tu sistema en internet.</span></div>
+      <div class="card"><strong>¿Quién ve mi panel?</strong><span>Solo quien tenga el usuario y la contraseña de administrador.</span></div>
+      <div class="card"><strong>¿El cliente paga comisiones?</strong><span>Las condiciones las define tu cuenta de Mercado Pago, no el sistema.</span></div>
+      <div class="card"><strong>¿Puedo exportar mis prospectos?</strong><span>Sí, con el botón «Exportar CSV» para abrirlos en Excel.</span></div>
+      <div class="card"><strong>¿Qué hago si olvido mi contraseña?</strong><span>Contacta a tu proveedor (GLA) para restablecerla de forma segura.</span></div>
+    </div>
+
+    <div class="tip"><strong>Estamos para ayudarte:</strong> si algo no funciona como esperas o quieres agregar una función nueva, escríbenos. Tu sistema está pensado para crecer contigo.</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-card">
+    <div class="flogo"><img src="img/logo.png" alt="Flamingos Tour"></div>
+    <p style="font-weight:700;color:#fff;font-size:1.05rem">Flamingos Tour</p>
+    <p>Vive la aventura. Nosotros te llevamos.</p>
+    <p style="margin-top:1rem">Celaya, Guanajuato · WhatsApp 442 715 3898</p>
+    <p class="ag">Sistema desarrollado por GLA · GrowLink Agency</p>
+  </div>
+
+</div>
+</body>
+</html>
